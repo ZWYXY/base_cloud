@@ -28,8 +28,6 @@ public class JsonController {
         list.add(new UserVO(1L,"h","1234")) ;
         list.add(new UserVO(1L,"h","1234")) ;
         list.add(new UserVO(1L,"h","1234")) ;
-        list.add(new UserVO()) ;
-        list.add(null) ;
         return list;
     }
 
