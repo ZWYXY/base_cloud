@@ -1,0 +1,14 @@
+server:
+  port: 8003
+spring:
+  application:
+    name: eureka-service
+
+eureka:
+  instance:
+    hostname: replica2  # 指定主机名
+  client:
+    register-with-eureka: true # 是否注册到读物中心（注册中心不需要开启）
+    fetch-registry: true       # 是否从服务中心获取服务（注册中心不需要开启）
+    service-url:
+      defaultZone: http://replica1:8002/eureka/
