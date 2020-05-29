@@ -13,8 +13,8 @@ public class ResultUtil {
 
     public static <T> Result<T> success() {
         Result<T> result = new Result<>();
-        result.setCode(ResultEnum.success_code_msg.getCode());
-        result.setMsg(ResultEnum.success_code_msg.getMsg());
+        result.setCode(ResultEnum.SUCCESS_CODE_MSG.getCode());
+        result.setMsg(ResultEnum.SUCCESS_CODE_MSG.getMsg());
         result.setData(null);
         return result;
     }
@@ -22,8 +22,24 @@ public class ResultUtil {
     public static <T> Result<T> success(T data) {
         Result<T> result = new Result<>();
         result.setData(data);
-        result.setMsg(ResultEnum.success_code_msg.getMsg());
-        result.setCode(ResultEnum.success_code_msg.getCode());
+        result.setMsg(ResultEnum.SUCCESS_CODE_MSG.getMsg());
+        result.setCode(ResultEnum.SUCCESS_CODE_MSG.getCode());
+        return result;
+    }
+
+    public static <T> Result<T> error(ResultEnum resultEnum) {
+        Result<T> result = new Result<>();
+        result.setMsg(resultEnum.getMsg());
+        result.setCode(resultEnum.getCode());
+        result.setData(null);
+        return result;
+    }
+
+    public static <T> Result<T> error(String msg) {
+        Result<T> result = new Result<>();
+        result.setMsg(msg);
+        result.setCode(ResultEnum.INTERNAL_SERVER_ERROR.getCode());
+        result.setData(null);
         return result;
     }
 
