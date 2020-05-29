@@ -24,7 +24,7 @@ public class ResultController {
 
     @ApiOperation("直接获取封装了user信息的result")
     @GetMapping("/getUser")
-    public Result<UserVO> getUser(@RequestParam @ApiParam(value = "用户唯一标识") Long userId)
+    public Result<UserVO> getUser(@RequestParam @ApiParam(value = "用户唯一标识", example = "1") Long userId)
     {
         return ResultUtil.success( new UserVO(userId,"h","1234"));
     }
@@ -38,6 +38,6 @@ public class ResultController {
     }
 
     // @Api 注解用于类上，表示标识这个类是 swagger 的资源。
-    // @ApiOperation 注解用于方法，表示一个 http 请求的操作。
-    // @ApiParam 注解用于参数上，用来标明参数信息。
+    // @ApiOperation 注解用于方法，表示一个 http 请求的操作
+    // @ApiParam 注解用于参数上，用来标明参数信息。需要注意的是加上 example 属性
 }
