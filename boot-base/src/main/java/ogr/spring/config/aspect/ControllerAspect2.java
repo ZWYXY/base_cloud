@@ -3,15 +3,13 @@ package ogr.spring.config.aspect;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Arrays;
 
-
 @Aspect
-public class ControllerAspect {
+public class ControllerAspect2 {
 
     /*
       注意：低粒度切面会覆盖高粒度切面   举例：A的切面范围比B大，A、B同时存在，A会被放弃执行只执行B
