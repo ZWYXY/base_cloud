@@ -1,48 +1,42 @@
 package ogr.spring.config.aspect;
 
+import lombok.extern.slf4j.Slf4j;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Arrays;
 
+@Order(1)
 @Aspect
-public class ControllerAspect2 {
-
-    /*
-      注意：低粒度切面会覆盖高粒度切面   举例：A的切面范围比B大，A、B同时存在，A会被放弃执行只执行B
-     */
+@Slf4j
+@Component
+public class ControllerAspect2 { // 记录方法执行时间
 
     // PointCut A
     // 拦截所有Controller层方法，打印请求参数和返回结果
     @Pointcut("execution(* ogr.spring.controller..*.*(..))")
     public void controllerCut() {}
+
     @Around("controllerCut()")
-    public void methodAround () {
-        System.err.println("package controller around");
+    public Object getMethodExecuteTime(ProceedingJoinPoint pjp) throws Throwable {
+        long beginTime = System.currentTimeMillis();
+        try {
+            return pjp.proceed();
+        } catch (Throwable e) {
+            log.error("获取方法执行切面抛出异常", e);
+        } finally {
+            long endTime = System.currentTimeMillis();
+            log.debug("执行方法: {}.{}, 耗时: {} ms",
+                pjp.getSignature().getDeclaringTypeName(),
+                pjp.getSignature().getName(), (endTime - beginTime));
+        }
+        return null;
     }
-
-    // PointCut B
-    // 不需要获取注解内容，只对使用了注解的方法进行拦截
-    @Pointcut("@annotation(org.springframework.web.bind.annotation.GetMapping)")
-    public void gmAnnotationCut() {}
-    @Around("gmAnnotationCut()")
-    public void geMethodAround() {
-        System.err.println("GetMappring Around");
-    }
-
-    // PointCut C
-    // 需要获取注解内容，并且拦截被注解的方法
-    @Pointcut("@annotation(postMapping)")
-    public void pmAnnotationCut(PostMapping postMapping) {}
-    @Around("pmAnnotationCut(postMapping)")
-    public void pmMethodAround(PostMapping postMapping) {
-        System.err.println("PostMapping around");
-        System.err.println(Arrays.toString(postMapping.value()));
-    }
-
-
 
 }
