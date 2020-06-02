@@ -1,20 +1,25 @@
 package ogr.spring.config.aspect;
 
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Arrays;
 
-
+@Order(1) // 数字越小优先级越高
 @Aspect
+@Component
 public class ControllerAspect {
 
     /*
-      注意：低粒度切面会覆盖高粒度切面   举例：A的切面范围比B大，A、B同时存在，A会被放弃执行只执行B
+      注意：举例：A的切面范围比B大，A、B同时存在， B会被优先执行，之后才是A
+      由于使用@Around需要放行，放行时会抛出异常，所以在用切面时，最好少使用@Around
+
      */
 
     // PointCut A
@@ -22,8 +27,9 @@ public class ControllerAspect {
     @Pointcut("execution(* ogr.spring.controller..*.*(..))")
     public void controllerCut() {}
     @Around("controllerCut()")
-    public void methodAround () {
+    public Object methodAround (ProceedingJoinPoint pjp) throws Throwable {
         System.err.println("package controller around");
+        return pjp.proceed();
     }
 
     // PointCut B
@@ -31,8 +37,9 @@ public class ControllerAspect {
     @Pointcut("@annotation(org.springframework.web.bind.annotation.GetMapping)")
     public void gmAnnotationCut() {}
     @Around("gmAnnotationCut()")
-    public void geMethodAround() {
+    public Object geMethodAround(ProceedingJoinPoint pjp) throws Throwable {
         System.err.println("GetMappring Around");
+        return pjp.proceed();
     }
 
     // PointCut C

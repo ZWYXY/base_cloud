@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @ApiModel("用户类，用来测试")
 public class UserVO {
-    @ApiModelProperty("用户唯一标识")
+    @ApiModelProperty(value = "用户唯一标识", example = "1")
     private Long id;
     @ApiModelProperty("用户名")
     private String username;
