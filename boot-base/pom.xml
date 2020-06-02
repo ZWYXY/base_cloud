@@ -86,6 +86,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
+        <!-- spring boot starter validation -->
+        <!-- 说明，springboot2.3.0 spring-boot-starter-web 不再依赖 starter-validation 需要手动引入 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+
         <!-- fastJson -->
         <dependency>
             <groupId>com.alibaba</groupId>

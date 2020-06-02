@@ -53,6 +53,7 @@
         <logger name="org.springframework" level="INFO"/>
         <logger name="org.mybatis" level="INFO"/>
         <logger name="springfox.documentation" level="INFO"/>
+        <logger name="org.hibernate.validator" level="INFO"/>
         <root level="debug">
             <appender-ref ref="Console"/>
             <appender-ref ref="RollingFileInfo"/>

@@ -8,11 +8,14 @@ import ogr.spring.result.Result;
 import ogr.spring.result.ResultEnum;
 import ogr.spring.result.ResultUtil;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.List;
 
 
 //@ControllerAdvice
@@ -35,8 +38,11 @@ public class GlobalExceptionHandler {
             return ResultUtil.error(ResultEnum.ERROR_ARGUMENTS_MISSING);
         }
         else if(ex instanceof MethodArgumentNotValidException) {
-            log.error("参数错误，{}",ex.getMessage());
-            return ResultUtil.error(ResultEnum.REQUEST_PARAMETER_ERROR);
+            log.error("参数错误，{}", ex.getMessage());
+            MethodArgumentNotValidException exx = (MethodArgumentNotValidException) ex;
+            List<ObjectError> errors = exx.getBindingResult().getAllErrors();
+            String message = errors.get(0).getDefaultMessage();
+            return ResultUtil.error(ResultEnum.REQUEST_PARAMETER_ERROR, message);
         }
         else {
            return ResultUtil.error(ex.getMessage());

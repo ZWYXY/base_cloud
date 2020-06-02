@@ -8,6 +8,7 @@ import ogr.spring.result.Result;
 import ogr.spring.result.ResultUtil;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class ResultController {
 
     @PostMapping("/getUserList")
 //    @ApiParam("用户信息")
-    public Result<List<UserVO>> getUserList(@RequestBody  UserVO userVO) {
+    public Result<List<UserVO>> getUserList(@RequestBody @Valid UserVO userVO) {
         List<UserVO> userVOList = new ArrayList<>();
         userVOList.add(new UserVO(1L,null,"1234"));
         return ResultUtil.success(userVOList);
