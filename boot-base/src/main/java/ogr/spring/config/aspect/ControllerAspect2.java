@@ -17,7 +17,8 @@ public class ControllerAspect2 { // 记录方法执行时间
     // PointCut A
     // 拦截所有Controller层方法，打印请求参数和返回结果
     @Pointcut("execution(* ogr.spring.controller..*.*(..))")
-    public void controllerCut() {}
+    public void controllerCut() {
+    }
 
     @Around("controllerCut()")
     public Object getMethodExecuteTime(ProceedingJoinPoint pjp) throws Throwable {
@@ -28,11 +29,30 @@ public class ControllerAspect2 { // 记录方法执行时间
             log.error("获取方法执行切面抛出异常", e);
         } finally {
             long endTime = System.currentTimeMillis();
-            log.debug("执行方法: {}.{}, 耗时: {} ms",
-                pjp.getSignature().getDeclaringTypeName(),
-                pjp.getSignature().getName(), (endTime - beginTime));
+            // 获取一下请求参数
+            log.debug("请求参数: {}", parseParameter(pjp.getArgs()));
+            log.debug("执行方法: {}.{} 耗时: {} ms",
+                    pjp.getSignature().getDeclaringTypeName(),
+                    pjp.getSignature().getName(), (endTime - beginTime));
         }
         return null;
+    }
+
+    private String parseParameter(Object[] args) {
+        if (null == args || args.length <= 0) {
+            return "该方法没有参数";
+        }
+        StringBuilder param = new StringBuilder("## 个:[");
+        for (Object obj : args) {
+            try{
+                param.append(obj.toString()).append(", ");
+            } catch (NullPointerException e){
+                log.warn("参数可能为空，请注意");
+            }
+        }
+        return param.deleteCharAt(param.lastIndexOf(","))
+               .deleteCharAt(param.lastIndexOf(" "))
+               .append("]").toString().replace("##", String.valueOf(args.length));
     }
 
 }
