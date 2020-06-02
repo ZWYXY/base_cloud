@@ -4,16 +4,15 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
+//import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Arrays;
 
 @Order(1) // 数字越小优先级越高
 @Aspect
-@Component
+//@Component
 public class ControllerAspect {
 
     /*
@@ -47,9 +46,10 @@ public class ControllerAspect {
     @Pointcut("@annotation(postMapping)")
     public void pmAnnotationCut(PostMapping postMapping) {}
     @Around("pmAnnotationCut(postMapping)")
-    public void pmMethodAround(PostMapping postMapping) {
+    public Object pmMethodAround(PostMapping postMapping, ProceedingJoinPoint pjp) throws Throwable {
         System.err.println("PostMapping around");
         System.err.println(Arrays.toString(postMapping.value()));
+        return pjp.proceed();
     }
 
 
