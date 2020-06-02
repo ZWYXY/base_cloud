@@ -22,7 +22,7 @@ public class Thymeleaf {
     public String getSomething(Model model) {
         UserVO ss = new UserVO(1L, "hh", "123", new String[]{"11"} );
         model.addAttribute("ss",ss);
-        return "hh";
+        return "hhh";
     }
 
 
