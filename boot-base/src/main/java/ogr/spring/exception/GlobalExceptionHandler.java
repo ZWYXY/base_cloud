@@ -8,6 +8,7 @@ import ogr.spring.result.Result;
 import ogr.spring.result.ResultEnum;
 import ogr.spring.result.ResultUtil;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -27,25 +29,30 @@ public class GlobalExceptionHandler {
     /**
      * 缺少请求参数异常
      *
-     * @param ex HttpMessageNotReadableException
+     * @param e HttpMessageNotReadableException
      * @return
      */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    public <T> Result<T> handleHttpMessageNotReadableException(Exception ex) {
-        if(ex instanceof MissingServletRequestParameterException) {
-            log.error("缺少请求参数，{}", ex.getMessage());
+    public <T> Result<T> handleHttpMessageNotReadableException(Exception e) throws IOException {
+        if(e instanceof MissingServletRequestParameterException) {
+            log.error("缺少请求参数，{}", e.getMessage());
             return ResultUtil.error(ResultEnum.ERROR_ARGUMENTS_MISSING);
         }
-        else if(ex instanceof MethodArgumentNotValidException) {
-            log.error("参数错误，{}", ex.getMessage());
-            MethodArgumentNotValidException exx = (MethodArgumentNotValidException) ex;
-            List<ObjectError> errors = exx.getBindingResult().getAllErrors();
+        else if(e instanceof MethodArgumentNotValidException) {
+            log.error("参数错误，{}", e.getMessage());
+            MethodArgumentNotValidException ex = (MethodArgumentNotValidException) e;
+            List<ObjectError> errors = ex.getBindingResult().getAllErrors();
             String message = errors.get(0).getDefaultMessage();
             return ResultUtil.error(ResultEnum.REQUEST_PARAMETER_ERROR, message);
         }
+        else if (e instanceof HttpMessageNotReadableException){
+            log.warn("【SpringMVC异常】{}", e.getMessage());
+            return ResultUtil.error(ResultEnum.REQUEST_PARAMETER_ERROR);
+        }
         else {
-           return ResultUtil.error(ex.getMessage());
+            log.error("系统异常，{}", e.getMessage());
+            return ResultUtil.error("未知错误");
         }
     }
 
