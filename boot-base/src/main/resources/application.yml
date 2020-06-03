@@ -2,6 +2,8 @@ server:
   port: 8864
 
 
+datasource:
+  url: localhost:3306/db0
 
 spring:
   thymeleaf:
@@ -9,14 +11,25 @@ spring:
 #    suffix: .html
     cache: false  # 关闭缓存
   datasource:
-    url: jdbc:mysql://localhost:3306/test_user
+    url: jdbc:mysql://${datasource.url}?useSSL=false&characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: 1142165668
+    hikari:
+      maximum-pool-size: 10
+      max-lifetime: 1770000
+
+mybatis:
+  config-location:
+    - classpath:mybatis.xml
+  mapper-locations:
+    - classpath:mapper/*.xml
+  type-aliases-package: ogr.spring.pojo.*
+  configuration:
+    map-underscore-to-camel-case: true  # 下划线转驼峰
 
 
 logging:
   config: classpath:log4j2/log4j2.xml
 
-
-#mybatis:
-#  check-config-location:
 
 

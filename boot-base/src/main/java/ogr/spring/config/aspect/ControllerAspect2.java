@@ -30,10 +30,9 @@ public class ControllerAspect2 { // 记录方法执行时间
         } finally {
             long endTime = System.currentTimeMillis();
             // 获取一下请求参数
-            log.debug("请求参数: {}", parseParameter(pjp.getArgs()));
-            log.debug("执行方法: {}.{} 耗时: {} ms",
+            log.debug("\n执行方法: {}.{} 耗时: {} ms, 请求参数: {}",
                     pjp.getSignature().getDeclaringTypeName(),
-                    pjp.getSignature().getName(), (endTime - beginTime));
+                    pjp.getSignature().getName(), (endTime - beginTime), parseParameter(pjp.getArgs()));
         }
         return null;
     }
