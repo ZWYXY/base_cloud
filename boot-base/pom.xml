@@ -109,6 +109,39 @@
             <version>1.2.70</version>
         </dependency>
 
+        <!-- Lucene 核心包 -->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>8.5.2</version>
+        </dependency>
+        <!-- 常规分词（英文） -->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-analyzers-common</artifactId>
+            <version>8.5.2</version>
+        </dependency>
+        <!-- Lucene 查询解析包 -->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-queryparser</artifactId>
+            <version>8.5.2</version>
+        </dependency>
+        <!-- 支持分词高亮 -->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-highlighter</artifactId>
+            <version>8.5.2</version>
+        </dependency>
+        <!-- 支持中文分词 -->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-analyzers-smartcn</artifactId>
+            <version>8.5.2</version>
+        </dependency>
+
+
+
 
     </dependencies>
 
