@@ -34,4 +34,13 @@ public class TestUserController {
         return ResultUtil.success(this.testUserService.queryById(id));
     }
 
+    @GetMapping("selectOneAs")
+    public Result<TestUser> selectOneAs(Long id) {
+        return ResultUtil.success(this.testUserService.queryAssociationById(id));
+    }
+
+    @GetMapping("selectOneEmbed")
+    public Result<TestUser> selectOneEmbed(Long id) {
+        return ResultUtil.success(this.testUserService.queryResultEmbedById(id));
+    }
 }

@@ -1,6 +1,8 @@
 package ogr.spring.pojo.po;
 
 import java.io.Serializable;
+import java.util.List;
+
 import lombok.Data;
 
 /**
@@ -23,5 +25,6 @@ public class TestUser implements Serializable {
     
     private String testPassword;
 
+    private List<RacesUnitsPO> racesUnitsPOList;
 
 }

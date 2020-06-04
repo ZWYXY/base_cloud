@@ -1,7 +1,7 @@
 package ogr.spring.service.impl;
 
-import ogr.spring.pojo.po.TestUser;
 import ogr.spring.dao.TestUserDao;
+import ogr.spring.pojo.po.TestUser;
 import ogr.spring.service.TestUserService;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +34,7 @@ public class TestUserServiceImpl implements TestUserService {
      * 查询多条数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
     @Override
@@ -75,5 +75,27 @@ public class TestUserServiceImpl implements TestUserService {
     @Override
     public boolean deleteById(Long testUserK) {
         return this.testUserDao.deleteById(testUserK) > 0;
+    }
+
+    /**
+     * 嵌套查询
+     *
+     * @param testUserK 主键
+     * @return 实例对象
+     */
+    @Override
+    public TestUser queryAssociationById(Long testUserK) {
+        return testUserDao.queryAssociationById(testUserK);
+    }
+
+    /**
+     * 嵌套结果
+     *
+     * @param testUserK 主键
+     * @return 实例对象
+     */
+    @Override
+    public TestUser queryResultEmbedById(Long testUserK) {
+        return testUserDao.queryResultEmbedById(testUserK);
     }
 }

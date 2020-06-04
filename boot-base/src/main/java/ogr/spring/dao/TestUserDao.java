@@ -64,4 +64,20 @@ public interface TestUserDao {
      */
     int deleteById(Long testUserK);
 
+    /**
+     * 嵌套查询
+     *
+     * @param testUserK 主键
+     * @return 实例对象
+     */
+    TestUser queryAssociationById(Long testUserK);
+
+    /**
+     * 嵌套结果
+     *
+     * @param testUserK 主键
+     * @return 实例对象
+     */
+    TestUser queryResultEmbedById(Long testUserK);
+
 }

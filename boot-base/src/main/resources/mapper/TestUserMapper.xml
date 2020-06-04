@@ -67,4 +67,33 @@
         delete from db0.test_user where test_user_k = #{testUserK}
     </delete>
 
+    <!-- 嵌套查询 -->
+    <resultMap type="ogr.spring.pojo.po.TestUser" id="TestUserMapAs">
+        <result property="testUserK" column="test_user_k" jdbcType="INTEGER"/>
+        <result property="testUsername" column="test_username" jdbcType="VARCHAR"/>
+        <result property="testPassword" column="test_password" jdbcType="VARCHAR"/>
+        <collection property="racesUnitsPOList" column="test_user_k"
+            jdbcType="BIGINT" select="ogr.spring.dao.RacesUnitsDao.queryAllByRace"/> <!--ofType="ogr.spring.pojo.po.RacesUnitsPO"-->
+    </resultMap>
+    <select id="queryAssociationById" resultMap="TestUserMapAs">
+        select test_user_k, test_username, test_password
+        from test_user where test_user_k = #{testUserK}
+    </select>
+
+    <!-- 嵌套结果 -->
+    <resultMap type="ogr.spring.pojo.po.TestUser" id="queryResultEmbedByIdMap">
+        <result property="testUserK" column="test_user_k" jdbcType="INTEGER"/>
+        <result property="testUsername" column="test_username" jdbcType="VARCHAR"/>
+        <result property="testPassword" column="test_password" jdbcType="VARCHAR"/>
+        <collection  property="racesUnitsPOList" resultMap="ogr.spring.dao.RacesUnitsDao.RacesUnitsMap"/> <!--ofType="ogr.spring.pojo.po.RacesUnitsPO"-->
+    </resultMap>
+    <select id="queryResultEmbedById" resultMap="queryResultEmbedByIdMap">
+        select mt.test_user_k, mt.test_username, mt.test_password,
+               st.id, st.race, st.soldier_kind, st.combat_style, st.hp, st.mp, st.update_timestamp, st.update_time
+        from test_user mt left outer join races_units st on test_user_k = race
+        where mt.test_user_k = #{testUserK}
+    </select>
+
+
+
 </mapper>
