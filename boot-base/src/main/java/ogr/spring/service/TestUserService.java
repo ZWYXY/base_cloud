@@ -2,6 +2,7 @@ package ogr.spring.service;
 
 import ogr.spring.pojo.po.TestUser;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -35,7 +36,7 @@ public interface TestUserService {
      * @param testUser 实例对象
      * @return 实例对象
      */
-    TestUser insert(TestUser testUser);
+    TestUser insert(TestUser testUser) throws SQLException;
 
     /**
      * 修改数据

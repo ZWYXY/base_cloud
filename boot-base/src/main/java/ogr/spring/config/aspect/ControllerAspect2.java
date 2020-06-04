@@ -25,8 +25,6 @@ public class ControllerAspect2 { // 记录方法执行时间
         long beginTime = System.currentTimeMillis();
         try {
             return pjp.proceed();
-        } catch (Throwable e) {
-            log.error("获取方法执行切面抛出异常", e);
         } finally {
             long endTime = System.currentTimeMillis();
             // 获取一下请求参数
@@ -34,7 +32,6 @@ public class ControllerAspect2 { // 记录方法执行时间
                     pjp.getSignature().getDeclaringTypeName(),
                     pjp.getSignature().getName(), (endTime - beginTime), parseParameter(pjp.getArgs()));
         }
-        return null;
     }
 
     private String parseParameter(Object[] args) {

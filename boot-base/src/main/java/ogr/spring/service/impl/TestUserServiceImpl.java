@@ -1,11 +1,15 @@
 package ogr.spring.service.impl;
 
 import ogr.spring.dao.TestUserDao;
+import ogr.spring.exception.DBOPException;
 import ogr.spring.pojo.po.TestUser;
+import ogr.spring.result.ResultEnum;
 import ogr.spring.service.TestUserService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -48,10 +52,14 @@ public class TestUserServiceImpl implements TestUserService {
      * @param testUser 实例对象
      * @return 实例对象
      */
+//    @Transactional(rollbackForClassName = {"Exception"})
+    @Transactional // 默认是运行时异常，及其子类，其他异常需要加上rollbackForClassName属性
     @Override
-    public TestUser insert(TestUser testUser) {
+    public TestUser insert(TestUser testUser) throws SQLException {
         this.testUserDao.insert(testUser);
-        return testUser;
+//        throw new SQLException();
+        throw new DBOPException(ResultEnum.DATABASE_OPERATION_ERROR);
+//        return testUser;
     }
 
     /**
