@@ -43,4 +43,12 @@ public class ResultUtil {
         return result;
     }
 
+    public static <T> Result<T> error(ResultEnum resultEnum, String msg) {
+        Result<T> result = new Result<>();
+        result.setMsg(resultEnum.getMsg() + msg);
+        result.setCode(ResultEnum.INTERNAL_SERVER_ERROR.getCode());
+        result.setData(null);
+        return result;
+    }
+
 }

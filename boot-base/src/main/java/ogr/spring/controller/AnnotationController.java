@@ -1,23 +1,17 @@
 package ogr.spring.controller;
 
-import ogr.spring.pojo.UserVO;
-import org.springframework.validation.annotation.Validated;
+import ogr.spring.annotation.LogUserAction;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/AnnotationController")
+@RequestMapping("/annotationController")
 public class AnnotationController {
 
-    @GetMapping("/get")
+    @LogUserAction(value = "记录用户行为", module = "用户行为记录",reqUrl = "/annotationController/logUserAction")
+    @GetMapping("/logUserAction")
     public String getGetMapping() {
-        return "getGetMapping" ;
-    }
-
-    @PostMapping("/post")
-    public String postMapping(@Validated UserVO userVO) {
-        return "/postMapping";
+        return "用户行为已被记录" ;
     }
 }

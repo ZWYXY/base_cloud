@@ -6,12 +6,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel("用户类，用来测试")
 public class UserVO {
-    @ApiModelProperty(value = "用户唯一标识", example = "1" )
+    @NotNull(message = "userId can not be null")
+    @ApiModelProperty(value = "用户唯一标识", example = "1")
     private Long id;
     @ApiModelProperty("用户名")
     private String username;

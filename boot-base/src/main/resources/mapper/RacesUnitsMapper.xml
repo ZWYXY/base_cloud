@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ogr.spring.dao.RacesUnitsDao">
+
+    <resultMap type="ogr.spring.pojo.po.RacesUnitsPO" id="RacesUnitsMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="race" column="race" jdbcType="INTEGER"/>
+        <result property="soldierKind" column="soldier_kind" jdbcType="VARCHAR"/>
+        <result property="combatStyle" column="combat_style" jdbcType="VARCHAR"/>
+        <result property="hp" column="hp" jdbcType="INTEGER"/>
+        <result property="mp" column="mp" jdbcType="INTEGER"/>
+        <result property="updateTimestamp" column="update_timestamp" jdbcType="INTEGER"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="RacesUnitsMap">
+        select
+          id, race, soldier_kind, combat_style, hp, mp, update_timestamp, update_time
+        from db0.races_units
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="RacesUnitsMap">
+        select
+          id, race, soldier_kind, combat_style, hp, mp, update_timestamp, update_time
+        from db0.races_units
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="RacesUnitsMap">
+        select
+          id, race, soldier_kind, combat_style, hp, mp, update_timestamp, update_time
+        from db0.races_units
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="race != null">
+                and race = #{race}
+            </if>
+            <if test="soldierKind != null and soldierKind != ''">
+                and soldier_kind = #{soldierKind}
+            </if>
+            <if test="combatStyle != null and combatStyle != ''">
+                and combat_style = #{combatStyle}
+            </if>
+            <if test="hp != null">
+                and hp = #{hp}
+            </if>
+            <if test="mp != null">
+                and mp = #{mp}
+            </if>
+            <if test="updateTimestamp != null">
+                and update_timestamp = #{updateTimestamp}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!-- 查询 -->
+    <select id="queryAllByRace" resultMap="RacesUnitsMap">
+        select
+            id, race, soldier_kind, combat_style, hp, mp, update_timestamp, update_time
+        from db0.races_units
+        where race = #{race}
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into db0.races_units(race, soldier_kind, combat_style, hp, mp, update_timestamp, update_time)
+        values (#{race}, #{soldierKind}, #{combatStyle}, #{hp}, #{mp}, #{updateTimestamp}, #{updateTime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update db0.races_units
+        <set>
+            <if test="race != null">
+                race = #{race},
+            </if>
+            <if test="soldierKind != null and soldierKind != ''">
+                soldier_kind = #{soldierKind},
+            </if>
+            <if test="combatStyle != null and combatStyle != ''">
+                combat_style = #{combatStyle},
+            </if>
+            <if test="hp != null">
+                hp = #{hp},
+            </if>
+            <if test="mp != null">
+                mp = #{mp},
+            </if>
+            <if test="updateTimestamp != null">
+                update_timestamp = #{updateTimestamp},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from db0.races_units where id = #{id}
+    </delete>
+
+
+
+
+</mapper>
