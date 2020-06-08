@@ -15,24 +15,24 @@ public class RedisServerImpl implements RedisService {
 
     /**
      * set redis: string类型
-     * @param key key
+     *
+     * @param key   key
      * @param value value
      */
     @Override
-    public void setString(String key, String value){
+    public void setString(String key, String value) {
         ValueOperations<String, String> valueOperations = stringRedisTemplate.opsForValue();
         valueOperations.set(key, value);
     }
 
     /**
-   * get redis: string类型
-   * @param key key
-   * @return value
-   */
+     * get redis: string类型
+     *
+     * @param key key
+     * @return value
+     */
     @Override
-    public String getString(String key){
-
-        System.err.println(stringRedisTemplate.opsForValue().get(key));
-        return stringRedisTemplate.opsForValue().get(key) ;
+    public String getString(String key) {
+        return stringRedisTemplate.opsForValue().get(key);
     }
 }
