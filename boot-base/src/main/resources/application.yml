@@ -33,7 +33,12 @@ spring:
         max-active: 1000
         # 等待可用连接的最大时间，单位毫秒，默认-1永久等待。如果超过等待时间，抛出JedisConnectionException
         max-wait: 2000
-
+  # 当服务在server上运行时，是否打印banner on off log
+  main:
+    banner-mode: log
+  # 默认就是这个位置
+  banner:
+    location: classpath:banner.txt
 
 mybatis:
   config-location:
@@ -47,6 +52,7 @@ mybatis:
 
 logging:
   config: classpath:log4j2/log4j2.xml
+
 
 
 
