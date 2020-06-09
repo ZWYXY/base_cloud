@@ -1,11 +1,15 @@
 package ogr.spring.service.impl;
 
+import ogr.spring.dao.RacesUnitsDao;
 import ogr.spring.dao.TestUserDao;
 import ogr.spring.exception.DBOPException;
+import ogr.spring.pojo.po.RacesUnitsPO;
 import ogr.spring.pojo.po.TestUser;
 import ogr.spring.result.ResultEnum;
+import ogr.spring.service.RacesUnitsService;
 import ogr.spring.service.TestUserService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
@@ -22,6 +26,9 @@ import java.util.List;
 public class TestUserServiceImpl implements TestUserService {
     @Resource
     private TestUserDao testUserDao;
+
+    @Resource
+    private RacesUnitsService racesUnitsService;
 
     /**
      * 通过ID查询单条数据
@@ -105,5 +112,22 @@ public class TestUserServiceImpl implements TestUserService {
     @Override
     public TestUser queryResultEmbedById(Long testUserK) {
         return testUserDao.queryResultEmbedById(testUserK);
+    }
+
+    // spring 事务传播策略在内部方法调用不起作用
+    @Override
+    @Transactional
+    public int insertAndUpdate(TestUser tu) {
+        testUserDao.deleteById(2L);
+        RacesUnitsPO racesUnitsPO = new RacesUnitsPO();
+        racesUnitsPO.setRace(2L);
+        racesUnitsPO.setSoldierKind("grunt");
+        racesUnitsPO.setCombatStyle("近战物攻");
+        racesUnitsPO.setHp(650);
+        racesUnitsPO.setMp(0);
+        racesUnitsPO.setUpdateTimestamp(System.currentTimeMillis());
+        racesUnitsService.insert(racesUnitsPO);
+        throw new RuntimeException();
+//        return 0;
     }
 }

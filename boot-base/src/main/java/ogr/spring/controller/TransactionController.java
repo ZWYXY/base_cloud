@@ -28,4 +28,11 @@ public class TransactionController {
         return ResultUtil.success();
     }
 
+    @GetMapping("insertUserAndUpdate")
+    public <T> Result<T>  insertUserAndUpdate() {
+        TestUser testUser = new TestUser();
+        this.testUserService.insertAndUpdate(testUser);
+        return ResultUtil.success();
+    }
+
 }

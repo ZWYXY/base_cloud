@@ -69,4 +69,12 @@ public interface TestUserService {
      * @return 实例对象
      */
     TestUser queryResultEmbedById(Long testUserK);
+
+    /**
+     * 插入并更新
+     *
+     * @param tu 用户信息
+     * @return 影响行数
+     */
+    int insertAndUpdate(TestUser tu);
 }
