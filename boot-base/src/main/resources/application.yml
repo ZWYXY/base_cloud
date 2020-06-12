@@ -6,6 +6,9 @@ datasource:
   url: localhost:3306/db0
 
 spring:
+#  服务器上指定静态资源地址
+#  resources:
+#    static-locations: file:./static/
   thymeleaf:
 #    prefix: classpath:/templates/
 #    suffix: .html
