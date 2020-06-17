@@ -22,9 +22,9 @@ spring:
       max-lifetime: 1770000
   redis:
     database: 0  # 数据库名称0-15
-    host: 192.168.238.128
+    host: 47.103.20.245
     port: 6379
-    password: 123456
+    password:
     timeout: 5000
     lettuce:
       pool:
