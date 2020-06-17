@@ -1,4 +1,4 @@
-package ogr.spring._1tcp.netty.preface.discard.server;
+package ogr.spring.server;
 
 
 import io.netty.channel.ChannelInitializer;

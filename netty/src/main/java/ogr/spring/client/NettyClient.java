@@ -1,4 +1,4 @@
-package ogr.spring._1tcp.netty.preface.discard;
+package ogr.spring.client;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
