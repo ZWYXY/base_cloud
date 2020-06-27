@@ -25,11 +25,11 @@ public class NettyServer {
     /**
      * boss 线程组用于处理连接工作
      */
-    private EventLoopGroup boss = new NioEventLoopGroup();// 只绑定一个端口，就开一个线程，开多了也只有一个线程会被绑定去监听连接
+    private final EventLoopGroup boss = new NioEventLoopGroup();// 只绑定一个端口，就开一个线程，开多了也只有一个线程会被绑定去监听连接
     /**
      * work 线程组用于数据处理
      */
-    private EventLoopGroup work = new NioEventLoopGroup();// 可以有多个线程来对接收到的数据进行处理
+    private final EventLoopGroup work = new NioEventLoopGroup();// 可以有多个线程来对接收到的数据进行处理
     /**
      * 服务端netty端口
      */
