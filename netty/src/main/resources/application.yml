@@ -1,1 +1,17 @@
 
+#local:
+#  netty:
+#    client-port: 9901
+#    client-host: localhost
+#    server-port: 9902
+#  同一等级的配置文件，如果多个配置文件中有相同属性，则以最后声明的配置文件为准
+#  etc:
+#  spring:
+#    profiles:
+#      active: const, dev
+#  这里加载了 const, dev 它们都有 client-port属性 但是程序中只会读出 dev中的值
+#  配置文件加载顺序 ./config下 -> ./ -> classpath根目录下的./config下 -> classpath的根目录下
+
+spring:
+  profiles:
+    active: const

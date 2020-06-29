@@ -1,0 +1,11 @@
+# 一些自定义参数
+
+# 客户端要连接的服务端地址
+local:
+  netty:
+    # 客户端要连接的服务端host
+    client-host: localhost
+    # 客户端要连接的服务端port
+    client-port: 9905
+    # netty服务端开放端口
+    server-port: 9906
