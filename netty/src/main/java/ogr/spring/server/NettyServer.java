@@ -26,6 +26,8 @@ public class NettyServer {
      * boss 线程组用于处理连接工作 理解为一个线程池
      */
     private final EventLoopGroup boss = new NioEventLoopGroup();// 若只绑定一个端口，就开一个线程，开多了也只有一个线程会被绑定去监听连接
+    // 可以在构造中指定线程数量
+    // private final EventLoopGroup boss = new NioEventLoopGroup(2);
     /**
      * work 线程组用于数据处理 理解为一个线程池
      */
