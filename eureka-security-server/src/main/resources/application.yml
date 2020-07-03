@@ -31,7 +31,7 @@ eureka:
     # 关闭自我保护机制
     enable-self-preservation: false
 
-# 这里放两个有关Eureka的连接
+# 这里放几个有关Eureka的连接
 # https://blog.csdn.net/hry2015/article/details/82597311 Eureka配置详解
 # https://developer.aliyun.com/article/651183  Eureka 保护机制解决方法
 # https://www.cnblogs.com/xishuai/p/spring-cloud-eureka-safe.html 关于保护机制的计算方法
