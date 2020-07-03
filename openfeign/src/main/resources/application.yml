@@ -19,7 +19,10 @@ eureka:
       defaultZone: http://admin:123456@localhost:8004/eureka/
     # 服务拉取频率
     registry-fetch-interval-seconds: 30
-
+feign:
+  # 开启服务降级
+  hystrix:
+    enabled: true
 
 logging:
   level:
