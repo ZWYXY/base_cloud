@@ -19,3 +19,8 @@ eureka:
       defaultZone: http://admin:123456@localhost:8004/eureka/
     # 服务拉取频率
     registry-fetch-interval-seconds: 30
+
+
+logging:
+  level:
+    com.micro.openfeign.service.UserService: debug
