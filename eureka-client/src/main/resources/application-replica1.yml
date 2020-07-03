@@ -5,9 +5,15 @@ spring:
     name: eureka-client
 
 eureka:
+  instance:
+    # Eureka instance 续约频率
+    lease-renewal-interval-in-seconds: 30
+
   client:
     fetch-registry: true
     register-with-eureka: true
     service-url:
       #defaultZone: http://${username}:${password}@${hostname}:${port}/eureka/
       defaultZone:  http://admin:123456@localhost:8004/eureka/
+    # 拉取服务频率
+    registry-fetch-interval-seconds: 30

@@ -8,8 +8,14 @@ spring:
   application:
     name: myopenfeign
 eureka:
+  instance:
+    # eureka 实例续约频率 这里是客户端所以 是Client续约频率
+    lease-renewal-interval-in-seconds: 30
+
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
       defaultZone: http://admin:123456@localhost:8004/eureka/
+    # 服务拉取频率
+    registry-fetch-interval-seconds: 30

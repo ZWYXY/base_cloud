@@ -8,8 +8,14 @@ spring:
   application:
     name: remote-service
 eureka:
+  instance:
+    # 续约频率
+    lease-renewal-interval-in-seconds: 30
+
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
       defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@localhost:8004/eureka/
+    # 客户端拉取服务频率
+    registry-fetch-interval-seconds: 30

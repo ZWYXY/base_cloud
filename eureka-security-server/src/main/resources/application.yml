@@ -9,8 +9,23 @@ spring:
       password: 123456
 
 eureka:
+  # instance 不管是作为client还是service都需要的配置
   instance:
     hostname: localhost
+    lease-expiration-duration-in-seconds: 90 #Eureka Server 多久没收到心跳认为服务失效
+
+  # client 本服务作为 Eureka Client的配置 不一定只有Eureka client配置
   client:
     fetch-registry: false # 注册中心不需要获取 为true会报错
     register-with-eureka: false # 注册中心不需要注册 为true会报错
+  server:
+    # Eureka Server 服务端实例租约过期定时任务执行频率
+    eviction-interval-timer-in-ms: 60000
+    # 为了防止网络波动，eureka server没有收到正常心跳，但实际上服务还在正常运行，而引入的的保护机制
+    # （多server情况下，server之间相互注册，此时server可以算作一个client）
+    # 保护机制激活条件：15分钟内 所有实例心跳超过85%不正常 通过两个关键字实现统计 Renews threshold, Renews(last minute)
+    # Renews 2*client数量
+    # Renews threshold 计算方式 client数量 * 2 * renewal-percent-threshold, renewal-percent-threshold可以使用如下方式设置
+    # renewal-percent-threshold: 0.85
+    # 关闭自我保护机制
+    enable-self-preservation: false
