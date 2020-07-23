@@ -1,1 +1,40 @@
+server:
+  port: 8102
 
+spring:
+  application:
+    name: my-hystrix
+  security:
+    user:
+      name: admin
+      password: 123456
+
+eureka:
+  instance:
+    # 续约频率
+    lease-renewal-interval-in-seconds: 30
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@localhost:8004/eureka/
+    # 客户端拉取服务频率
+    registry-fetch-interval-seconds: 30
+
+
+
+info:
+  build: "@timestamp@"
+  description: "@project.description@"
+  name: "@project.name@"
+  spring-boot-version: "@boot-version@"
+  version: "@project.version@"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: evn,*
+  endpoint:
+    health:
+      show-details: always
