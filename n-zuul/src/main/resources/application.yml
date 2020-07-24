@@ -7,6 +7,10 @@ spring:
     user:
       name: admin
       password: 123456
+  jackson:
+    serialization:
+      # json 结果格式化
+      indent-output: true
 eureka:
   instance:
     # 多久到服务中心去续约
@@ -22,8 +26,21 @@ eureka:
     # 是否获取别的注册的服务
     fetch-registry: true
 zuul:
-  routes:
+  routes: # 以下是默认路由规则 path如有需要可以修改成想要的
+    # 服务名称
     openfeign-service:
-      path: /openfeign-service/**
+      path: /openfeign-service/** # 在浏览器输入的地址前缀
+    # 服务名称
     remote-service:
-      path: /remote-service/**
+      path: /remote-service/**    # 在浏览器输入的地址前缀
+  # ignored-services: openfeign-service, remote-service  # 忽略默认路由配置
+  # 负载均衡默认开启
+  # 开启访问前缀
+  prefix: /zuul-proxy
+# 开启查看路由的端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'routes'
+
