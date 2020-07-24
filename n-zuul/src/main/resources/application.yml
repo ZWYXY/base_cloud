@@ -23,7 +23,7 @@ eureka:
     fetch-registry: true
 zuul:
   routes:
-    feign-service:
+    openfeign-service:
       path: /openfeign-service/**
     remote-service:
       path: /remote-service/**
