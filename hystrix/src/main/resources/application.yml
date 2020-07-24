@@ -21,15 +21,6 @@ eureka:
     # 客户端拉取服务频率
     registry-fetch-interval-seconds: 30
 
-
-
-info:
-  build: "@timestamp@"
-  description: "@project.description@"
-  name: "@project.name@"
-  spring-boot-version: "@boot-version@"
-  version: "@project.version@"
-
 management:
   endpoints:
     web:
@@ -38,3 +29,15 @@ management:
   endpoint:
     health:
       show-details: always
+
+feign:
+  # 开启服务降级
+  hystrix:
+    enabled: true
+
+info:
+  build: "@timestamp@"
+  description: "@project.description@"
+  name: "@project.name@"
+  spring-boot-version: "@boot-version@"
+  version: "@project.version@"
