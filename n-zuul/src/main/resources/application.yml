@@ -21,4 +21,9 @@ eureka:
       defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@localhost:8004/eureka/
     # 是否获取别的注册的服务
     fetch-registry: true
-
+zuul:
+  routes:
+    feign-service:
+      path: /openfeign-service/**
+    remote-service:
+      path: /remote-service/**
