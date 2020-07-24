@@ -12,11 +12,11 @@
     <groupId>ogr.spring</groupId>
     <artifactId>boot-base</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>boot-base</name>
-    <description>boot-base</description>
+    <name>my-boot</name>
+    <description>my-boot</description>
 
     <properties>
-        <java.version>12</java.version>
+        <java.version>14</java.version>
     </properties>
 
     <dependencies>
