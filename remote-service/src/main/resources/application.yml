@@ -20,6 +20,6 @@ eureka:
     # 服务拉取间隔
     registry-fetch-interval-seconds: 30
 
-logging:
-  level:
-    com.mirco.remoteservice.controller.UserController: debug
+#logging:
+#  level:
+#    com.mirco.remoteservice.controller.UserController: info
