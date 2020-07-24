@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class UserServiceFallBackImpl implements UserService {
 
     @Override
-    public Long getUserId() {
+    public Long getUserId(Long userId) {
         return -100L;
     }
 }
