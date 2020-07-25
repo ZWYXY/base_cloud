@@ -1,0 +1,32 @@
+server:
+  port: 8104
+
+service-url:
+  remote-service: http://localhost:8101
+
+
+spring:
+  application:
+    name: my-gateway-service
+  security:
+    user:
+      name: admin
+      password: 123456
+  cloud:
+    gateway:
+      routes:
+        - id: path_route # 路由的ID
+          uri: ${service-url.remote-service}/user/{id} # 匹配后路由地址
+          predicates: # 断言，路径相匹配的进行路由
+           - Path=/remote/user/{id}
+
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 30
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@localhost:8004/eureka/
+    registry-fetch-interval-seconds: 30
+
