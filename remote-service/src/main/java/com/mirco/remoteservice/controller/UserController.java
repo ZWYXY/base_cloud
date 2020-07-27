@@ -1,5 +1,6 @@
 package com.mirco.remoteservice.controller;
 
+import com.mirco.remoteservice.pojo.po.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,5 +13,10 @@ public class UserController {
     @GetMapping("/{userId}")
     public Long getUserId(@PathVariable Long userId) {
         return userId + 10086 ;
+    }
+
+    @GetMapping("/entity")
+    public User getUserEntity() {
+        return new User("Hello World!");
     }
 }
