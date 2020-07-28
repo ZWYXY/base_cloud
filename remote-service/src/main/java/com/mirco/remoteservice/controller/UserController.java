@@ -1,10 +1,14 @@
 package com.mirco.remoteservice.controller;
 
+import com.mirco.remoteservice.pojo.po.MyConfigBean;
 import com.mirco.remoteservice.pojo.po.User;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Properties;
 
 
 @RestController
@@ -19,4 +23,31 @@ public class UserController {
     public User getUserEntity() {
         return new User("Hello World!");
     }
+
+    @GetMapping("/config")
+    public MyConfigBean getMyConfigBean(@RequestParam("userId") Long userId) throws IOException {
+
+        MyConfigBean myConfigBean = new MyConfigBean();
+
+
+        Properties properties = new Properties();
+        properties.load(
+                new FileReader(
+                        "C:\\IntelliJProject\\base_cloud\\remote-service\\src\\main\\resources\\a.txt",
+                        StandardCharsets.UTF_8));
+        myConfigBean.setUsername( (String) properties.get("username"));
+        myConfigBean.setPassword( (String) properties.get("password"));
+
+        // 使用utf-8写
+        properties.setProperty("username","号子");
+        properties.setProperty("password","来了老弟");
+        properties.store(
+                new FileWriter("C:\\IntelliJProject\\base_cloud\\remote-service\\src\\main\\resources\\a.txt",
+                        StandardCharsets.UTF_8),
+                null);
+
+        myConfigBean.setUserId(userId);
+        return myConfigBean;
+    }
+
 }
