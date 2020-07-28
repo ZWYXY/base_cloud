@@ -1,0 +1,69 @@
+server:
+  port: 8105
+
+service-url:
+  remote-service: http://localhost:8101/
+
+spring:
+  cloud:
+    gateway:
+      routes:
+#        - id: after_route
+#          uri: ${service-url.remote-service}
+#          predicates:
+#            # 指定时间之后的请求会匹配该路由
+#            - After=2019-09-24T16:30:00+08:00[Asia/Shanghai]
+#            #  如果设置成下面，则404
+#            # - After=2020-09-24T16:30:00+08:00[Asia/Shanghai]
+
+#        - id: before_route
+#          uri: ${service-url.remote-service}
+#          predicates:
+#            # 指定时间之前的请求会匹配该路由
+#            - Before=2020-09-24T16:30:00+08:00[Asia/Shanghai]
+
+#        - id: between_route
+#          uri: ${service-url.remote-service}
+#          predicates:
+#            # 指定时间之内的请求会匹配该路由
+#            - Between=2019-09-24T16:30:00+08:00[Asia/Shanghai], 2019-09-25T16:30:00+08:00[Asia/Shanghai]
+
+        - id: cookie_route
+          uri: ${service-url.remote-service}
+          predicates:
+            # 带有指定Cookie的请求会匹配该路由
+            - Cookie=username,macro
+
+#        - id: header_route
+#          uri: ${service-url.user-service}
+#          predicates:
+#            - Header=X-Request-Id, \d+
+#        - id: host_route
+#          uri: ${service-url.user-service}
+#          predicates:
+#            - Host=**.macrozheng.com
+#        - id: method_route
+#          uri: ${service-url.user-service}
+#          predicates:
+#            - Method=GET
+#        - id: method_route
+#          uri: ${service-url.user-service}
+#          predicates:
+#            - Method=GET
+#        - id: method_route
+#          uri: ${service-url.user-service}
+#          predicates:
+#              - Method=GET
+#        - id: remoteaddr_route
+#          uri: ${service-url.user-service}
+#          predicates:
+#            - RemoteAddr=192.168.1.1/24
+#        - id: weight_high
+#          uri: http://localhost:8201
+#          predicates:
+#            - Weight=group1, 8
+#        - id: weight_low
+#          uri: http://localhost:8202
+#          predicates:
+#            - Weight=group1, 2
+
