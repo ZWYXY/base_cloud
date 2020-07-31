@@ -31,8 +31,9 @@ spring:
         - id: cookie_route
           uri: ${service-url.remote-service}
           predicates:
-            # 带有指定Cookie的请求会匹配该路由
+            # 带有指定Cookie的请求会匹配该路由 如果有多个必须多个都要匹配（前面是cookie的name 后面是cookie的value）
             - Cookie=username,macro
+            - Cookie=password,macro
 
 #        - id: header_route
 #          uri: ${service-url.user-service}
