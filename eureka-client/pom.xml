@@ -12,10 +12,10 @@
 	<artifactId>eureka-client</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>eureka-client</name>
-	<description>eureka-client</description>
+	<description>my-eureka-client</description>
 
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 		<spring-cloud.version>Hoxton.SR4</spring-cloud.version>
 	</properties>
 
