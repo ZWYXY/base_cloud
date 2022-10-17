@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="ogr.spring.dao.TestUserDao">
+<mapper namespace="com.zr.dao.TestUserDao">
 
-    <resultMap type="ogr.spring.pojo.po.TestUser" id="TestUserMap">
+    <resultMap type="com.zr.pojo.po.TestUser" id="TestUserMap">
         <result property="testUserK" column="test_user_k" jdbcType="INTEGER"/>
         <result property="testUsername" column="test_username" jdbcType="VARCHAR"/>
         <result property="testPassword" column="test_password" jdbcType="VARCHAR"/>
@@ -68,12 +68,12 @@
     </delete>
 
     <!-- 嵌套查询 -->
-    <resultMap type="ogr.spring.pojo.po.TestUser" id="TestUserMapAs">
+    <resultMap type="com.zr.pojo.po.TestUser" id="TestUserMapAs">
         <result property="testUserK" column="test_user_k" jdbcType="INTEGER"/>
         <result property="testUsername" column="test_username" jdbcType="VARCHAR"/>
         <result property="testPassword" column="test_password" jdbcType="VARCHAR"/>
         <collection property="racesUnitsPOList" column="test_user_k"
-            jdbcType="BIGINT" select="ogr.spring.dao.RacesUnitsDao.queryAllByRace"/> <!--ofType="ogr.spring.pojo.po.RacesUnitsPO"-->
+            jdbcType="BIGINT" select="com.zr.dao.RacesUnitsDao.queryAllByRace"/> <!--ofType="po.pojo.com.zr.RacesUnitsPO"-->
     </resultMap>
     <select id="queryAssociationById" resultMap="TestUserMapAs">
         select test_user_k, test_username, test_password
@@ -81,11 +81,11 @@
     </select>
 
     <!-- 嵌套结果 -->
-    <resultMap type="ogr.spring.pojo.po.TestUser" id="queryResultEmbedByIdMap">
+    <resultMap type="com.zr.pojo.po.TestUser" id="queryResultEmbedByIdMap">
         <result property="testUserK" column="test_user_k" jdbcType="INTEGER"/>
         <result property="testUsername" column="test_username" jdbcType="VARCHAR"/>
         <result property="testPassword" column="test_password" jdbcType="VARCHAR"/>
-        <collection  property="racesUnitsPOList" resultMap="ogr.spring.dao.RacesUnitsDao.RacesUnitsMap"/> <!--ofType="ogr.spring.pojo.po.RacesUnitsPO"-->
+        <collection  property="racesUnitsPOList" resultMap="com.zr.dao.RacesUnitsDao.RacesUnitsMap"/> <!--ofType="po.pojo.com.zr.RacesUnitsPO"-->
     </resultMap>
     <select id="queryResultEmbedById" resultMap="queryResultEmbedByIdMap">
         select mt.test_user_k, mt.test_username, mt.test_password,

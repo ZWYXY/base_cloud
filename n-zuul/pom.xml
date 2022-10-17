@@ -8,7 +8,7 @@
         <version>2.3.1.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.mirco</groupId>
+    <groupId>com.zr</groupId>
     <artifactId>n-zuul</artifactId>
     <version>0.1</version>
     <name>n-zuul</name>
