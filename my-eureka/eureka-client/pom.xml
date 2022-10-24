@@ -4,17 +4,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.zr</groupId>
-		<artifactId>base_cloud</artifactId>
+		<artifactId>my-eureka</artifactId>
 		<version>0.1.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<artifactId>eureka-client</artifactId>
 	<name>eureka-client</name>
-
-	<properties>
-		<java.version>17</java.version>
-	</properties>
 
 	<dependencies>
 		<dependency>

@@ -5,9 +5,9 @@
 
     <parent>
         <groupId>com.zr</groupId>
-        <artifactId>base_cloud</artifactId>
+        <artifactId>my-eureka</artifactId>
         <version>0.1.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
 
     <artifactId>eureka-service</artifactId>
