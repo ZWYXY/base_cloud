@@ -24,6 +24,7 @@
     </properties>
 
     <modules>
+        <module>my-eureka</module>
         <module>eureka-security-server</module>
         <module>my-boot</module>
         <module>my-gateway</module>

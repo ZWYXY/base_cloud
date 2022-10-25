@@ -12,3 +12,10 @@ eureka:
       defaultZone: http://localhost:8001/eureka/ #配置注册中心地址
 
 
+token:
+  dev: dev
+  bad: bad
+  dev-ip: 124.221.35.171
+  dev-port: 8080
+
+redirectUrl: www.baidu.com
