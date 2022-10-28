@@ -8,11 +8,13 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.7.4</version>
+        <relativePath/>
     </parent>
 
     <groupId>com.zr</groupId>
     <artifactId>base_cloud</artifactId>
     <packaging>pom</packaging>
+    <name>base_cloud</name>
     <version>0.1.0</version>
 
     <properties>
