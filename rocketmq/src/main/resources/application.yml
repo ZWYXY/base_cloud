@@ -1,0 +1,16 @@
+
+server:
+  port: 9011
+
+rocketmq:
+  name-server:
+  producer:
+    group: producerGroup1
+#    access-key: 123456
+#    secret-key: admin
+  consumer:
+    group: consumerGroup1
+#    access-key: 123456
+#    secret-key: admin
+#    topic: demo
+
