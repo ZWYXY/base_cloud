@@ -1,7 +1,7 @@
 package com.mirco.remoteservice.controller;
 
-import com.mirco.remoteservice.pojo.po.MyConfigBean;
-import com.mirco.remoteservice.pojo.po.User;
+import com.mirco.remoteservice.pojo.pos.MyConfigBean;
+import com.mirco.remoteservice.pojo.pos.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.FileReader;

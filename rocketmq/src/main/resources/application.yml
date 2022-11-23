@@ -3,7 +3,7 @@ server:
   port: 9011
 
 rocketmq:
-  name-server:
+  name-server: 124.221.35.171:9876
   producer:
     group: producerGroup1
 #    access-key: 123456
