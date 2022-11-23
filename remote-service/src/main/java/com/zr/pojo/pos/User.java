@@ -1,4 +1,4 @@
-package com.mirco.remoteservice.pojo.pos;
+package com.zr.pojo.pos;
 
 import lombok.*;
 

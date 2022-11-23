@@ -8,17 +8,17 @@ spring:
   application:
     name: remote-service
   datasource:
-    url: jdbc:mysql://${datasource.url}?useSSL=false&characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/mybatis_plus?useSSL=false&characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
     username: root
-    password:
+    password: 1142165668
+#    password: 1142165668
     hikari:
-      maximum-pool-size: 10
+      maximum-pool-size: 4
       max-lifetime: 1770000
 eureka:
   instance:
     # 续约间隔
     lease-renewal-interval-in-seconds: 30
-
 
 
   client:
